@@ -4,6 +4,8 @@ class_name Player extends CharacterBody2D
 @onready var state_machine = $"State Machine"
 
 @export var speed := 400
+@export var gravity := 300
+@export var jump_impulse := -280
 
 func _ready() -> void:
 	# init state machine, pass self as ref

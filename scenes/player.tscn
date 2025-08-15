@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://doy6t11bvnvs"]
+[gd_scene load_steps=42 format=3 uid="uid://doy6t11bvnvs"]
 
 [ext_resource type="Texture2D" uid="uid://b3s1jtwu33fem" path="res://assets/sprites/male_hero-idle.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cabvxh5teqh25" path="res://scripts/player.gd" id="1_g2els"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://be6jefif812ao" path="res://assets/sprites/male_hero-run.png" id="4_qlg0r"]
 [ext_resource type="Script" uid="uid://c0vh88pw1j20x" path="res://scripts/state_machine.gd" id="6_tuyoq"]
 [ext_resource type="Script" uid="uid://h3x867djqoc1" path="res://scripts/idle.gd" id="7_fjrip"]
+[ext_resource type="Script" uid="uid://ctjb1ix7b34b0" path="res://scripts/jump.gd" id="8_smehm"]
+[ext_resource type="Script" uid="uid://wypdbt4i1kp5" path="res://scripts/run.gd" id="8_y4r1p"]
+[ext_resource type="Script" uid="uid://c7u6mpe0jfge8" path="res://scripts/fall.gd" id="10_d2wvv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pf23h"]
 atlas = ExtResource("2_qlg0r")
@@ -194,9 +197,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qfm1y")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump",
-"speed": 10.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -247,15 +250,27 @@ position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_3v2ag")
 animation = &"fall"
 autoplay = "idle"
-frame_progress = 0.92746323
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16)
 shape = SubResource("CapsuleShape2D_jej6c")
 
-[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "idle_state", "run_state", "jump_state", "fall_state")]
 script = ExtResource("6_tuyoq")
 initial_state = NodePath("idle")
+idle_state = NodePath("idle")
+run_state = NodePath("run")
+jump_state = NodePath("jump")
+fall_state = NodePath("fall")
 
 [node name="idle" type="Node" parent="State Machine"]
 script = ExtResource("7_fjrip")
+
+[node name="run" type="Node" parent="State Machine"]
+script = ExtResource("8_y4r1p")
+
+[node name="jump" type="Node" parent="State Machine"]
+script = ExtResource("8_smehm")
+
+[node name="fall" type="Node" parent="State Machine"]
+script = ExtResource("10_d2wvv")

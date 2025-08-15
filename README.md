@@ -20,7 +20,7 @@ Work in progress
 These are the states implemented or planned:
 
 - [x] Idle
-- [ ] Run left/right
-- [ ] Jump
-- [ ] Falling
+- [x] Run left/right
+- [x] Jump
+- [x] Falling
 - [ ] Wall jump

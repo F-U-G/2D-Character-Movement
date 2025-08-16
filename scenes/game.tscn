@@ -1,8 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://ne584jo45ark"]
+[gd_scene load_steps=5 format=3 uid="uid://ne584jo45ark"]
 
 [ext_resource type="PackedScene" uid="uid://doy6t11bvnvs" path="res://scenes/player.tscn" id="1_uwrxv"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yqjtg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwrxv"]
+size = Vector2(24, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yqjtg"]
+size = Vector2(1128, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnu2h"]
+size = Vector2(24, 624)
 
 [node name="Game" type="Node2D"]
 
@@ -11,6 +18,38 @@ position = Vector2(179, 540)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_right = 24.0
+offset_bottom = 648.0
+color = Color(0.095436886, 0.13214807, 0.2912977, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="StaticBody2D"]
+offset_left = 24.0
+offset_top = 624.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.09411765, 0.13333334, 0.2901961, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="StaticBody2D"]
+offset_left = 1128.0
+offset_right = 1152.0
+offset_bottom = 624.0
+color = Color(0.09411765, 0.13333334, 0.2901961, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="StaticBody2D"]
+offset_left = 24.0
+offset_right = 1128.0
+offset_bottom = 24.0
+color = Color(0.09411765, 0.13333334, 0.2901961, 1)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(152, 550)
-shape = SubResource("WorldBoundaryShape2D_yqjtg")
+position = Vector2(12, 324)
+shape = SubResource("RectangleShape2D_uwrxv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(588, 636)
+shape = SubResource("RectangleShape2D_yqjtg")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1140, 312)
+shape = SubResource("RectangleShape2D_lnu2h")

@@ -8,7 +8,7 @@ I used this project to learn state machines in order to add movement abilities f
 
 ## Download
 
-Work in progress
+Check the releases page.
 
 ## Controls
 
@@ -24,3 +24,9 @@ These are the states implemented or planned:
 - [x] Jump
 - [x] Falling
 - [ ] Wall jump
+
+## Other plans
+
+- [ ] Improved jump mechanics(held vs tap)
+- [ ] Adjust gravity and speed
+- [ ] Animation to transition between jump and fall states

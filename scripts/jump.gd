@@ -1,14 +1,26 @@
 extends State
 
+var held_jump_timer := 0.3
+var jump_timer := 0.0
+
 func enter() -> void:
 	super()
 	player.velocity.y += player.jump_impulse
+	jump_timer = held_jump_timer
 
 # use this for wall jumps later on
 #func process_input(_event: InputEvent) -> State:
 #	return null
 
 func physics_update(_delta: float) -> State:
+	jump_timer -= _delta
+
+	if jump_timer > 0.0 and move_controller.jump_held():
+		player.velocity.y += player.extended_jump_impulse
+
+	if move_controller.jump_ended(): # end extended jump if jump is released
+		jump_timer = 0.0
+
 	player.velocity.y += player.gravity * _delta
 	movement = get_movement_input() * player.speed
 

@@ -27,7 +27,8 @@ These are the states implemented or planned:
 
 ## Other plans
 
-- [ ] Improved jump mechanics(held vs tap)
+- [x] Improved jump mechanics(held vs tap)
 - [ ] Add platforms, and mechanics to drop down through platforms
-- [ ] Adjust gravity and speed
+- [x] Adjust gravity and speed
+- [x] Add friction and acceleration
 - [ ] Animation to transition between jump and fall states

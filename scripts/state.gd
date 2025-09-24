@@ -7,7 +7,8 @@ var state_machine: StateMachine
 var animation: AnimatedSprite2D
 var move_controller
 
-var movement = 0
+var velocity_weight : float
+var movement : float
 
 
 func flip_animation() -> void: # flips animation based on horizontal movement

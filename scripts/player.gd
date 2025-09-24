@@ -2,6 +2,7 @@ class_name Player extends CharacterBody2D
 
 @onready var animation = $AnimatedSprite2D
 @onready var state_machine = $"State Machine"
+@onready var move_controller = $"Movement Controller"
 
 @export var speed := 400
 @export var gravity := 300
@@ -9,7 +10,7 @@ class_name Player extends CharacterBody2D
 
 func _ready() -> void:
 	# init state machine, pass self as ref
-	state_machine.init(self)
+	state_machine.init(self, animation, move_controller)
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)

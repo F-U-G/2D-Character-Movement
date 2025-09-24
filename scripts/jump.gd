@@ -1,7 +1,7 @@
 extends State
 
 func enter() -> void:
-	player.animation.play("jump")
+	super()
 	player.velocity.y += player.jump_impulse
 
 # use this for wall jumps later on
@@ -10,14 +10,12 @@ func enter() -> void:
 
 func physics_update(_delta: float) -> State:
 	player.velocity.y += player.gravity * _delta
-	player.velocity.x = get_movement_direction() * player.speed
+	movement = get_movement_input() * player.speed
+
+	flip_animation()
+	player.velocity.x = movement
 	player.move_and_slide()
 	
-	# flip animation based on direction
-	if player.velocity.x < 0:
-		player.animation.flip_h = true
-	elif player.velocity.x > 0:
-		player.animation.flip_h = false
 	
 	if player.is_on_floor():
 		return state_machine.idle_state

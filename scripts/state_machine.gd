@@ -7,11 +7,13 @@ class_name StateMachine extends Node
 @export var fall_state: State
 var current_state: State
 
-func init(player: Player) -> void:
+func init(player: CharacterBody2D, animation: AnimatedSprite2D, move_controller) -> void:
 	# set the parent to the player node so all states can access its vars
 	for child in get_children():
 		child.player = player
 		child.state_machine = self
+		child.animation = animation
+		child.move_controller = move_controller
 	change_state(initial_state)
 
 # change state only happens if a state returns a state it wants to switch to

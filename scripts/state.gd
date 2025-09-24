@@ -1,23 +1,35 @@
 class_name State extends Node
 
-# vars to access the data in the higher nodes
-var player: Player
+@export var animation_name: String
+
+var player: CharacterBody2D
 var state_machine: StateMachine
+var animation: AnimatedSprite2D
+var move_controller
+
+var movement = 0
+
+
+func flip_animation() -> void: # flips animation based on horizontal movement
+	if player.velocity.x < 0:
+		animation.flip_h = true
+	if player.velocity.x > 0:
+		animation.flip_h = false
+
+
+# these two functions can be overrided to lock inputs into a specific state(like a dash state)
+func get_movement_input() -> int:
+	return move_controller.get_movement_direction()
+
+func get_jump_input() -> bool:
+	return move_controller.wants_jump()
+
 
 func enter() -> void:
-	pass
+	animation.play(animation_name)
 
 func exit() -> void:
 	pass
-
-# a func that all states can use in order to move left or right
-# this prevents the player from stopping if they are holding one key then holding the other
-func get_movement_direction() -> int:
-	if Input.is_action_pressed("move_left"):
-		return -1
-	elif Input.is_action_pressed("move_right"):
-		return 1
-	return 0
 
 # return a new state in order to change to another state
 func process_input(_event: InputEvent) -> State:
